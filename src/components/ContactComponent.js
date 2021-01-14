@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem,
     Button, Label, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 import { Fade } from 'react-animation-components';
 
 const required = val => val && val.length;
@@ -11,7 +11,7 @@ const minLength = len => val => val && (val.length >= len);
 const isNumber = val => !isNaN(+val);
 const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
-class Contact extends Component {
+class Contact extends Component  {
 
     constructor(props) {
         super(props);
@@ -32,41 +32,39 @@ class Contact extends Component {
             }
         };
 
+       
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(values) {
-        console.log("Current state is: " + JSON.stringify(values));
-        alert("Thank you for your feeback: " + JSON.stringify(values));
+        //this.props.postFeedback(values);
+        alert('Thank you for your Feedback!')
+        this.props.resetFeedbackForm();
     }
 
     render() {
+  
 
-        return (
-            <div className="container">
+    return (
+        <div className="container">
             <div className="row">
                 <div className="col">
-                    <Breadcrumb>
+                <Breadcrumb>
                         <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>Contact</BreadcrumbItem>
+                        <BreadcrumbItem active>Contact Us</BreadcrumbItem>
                     </Breadcrumb>
-                    <h2>Contact</h2>
+                    <h2>Contact Us</h2>
                     <hr />
                 </div>
             </div>
-            
-                     
-
-            <Fade in>
-                <div className="row mt-5">
-                    <div className="col-12">
-                    </div>
+               
                     <div className="col-md-10">
-                        <LocalForm onSubmit={values => this.handleSubmit(values)}>
+                    <Fade in>
+                    <Form model="feedbackForm" onSubmit={values => this.handleSubmit(values)}>
                             <Row className="form-group">
-                                <Label class="label" htmlFor="firstName" md={2}>First Name</Label>
+                                <Label htmlFor="firstName" md={2}>First Name</Label>
                                 <Col md={10}>
-                                    <Control.text model=".firstName" id="firstName" name="firstName"
+                                <Control.text model=".firstName" id="firstName" name="firstName"
                                         placeholder="First Name"
                                         className="form-control"
                                         validators={{
@@ -81,7 +79,7 @@ class Contact extends Component {
                                         show="touched"
                                         component="div"
                                         messages={{
-                                           
+                                            required: 'Required',
                                             minLength: 'Must be at least 2 characters',
                                             maxLength: 'Must be 15 characters or less'
                                         }}
@@ -89,7 +87,7 @@ class Contact extends Component {
                                 </Col>
                             </Row>
                             <Row className="form-group">
-                                <Label class="label" htmlFor="lastName" md={2}>Last Name</Label>
+                                <Label htmlFor="lastName" md={2}>Last Name</Label>
                                 <Col md={10}>
                                     <Control.text model=".lastName" id="lastName" name="lastName"
                                         placeholder="Last Name"
@@ -106,7 +104,7 @@ class Contact extends Component {
                                         show="touched"
                                         component="div"
                                         messages={{
-                                           
+                                            required: 'Required',
                                             minLength: 'Must be at least 2 characters',
                                             maxLength: 'Must be 15 characters or less'
                                         }}
@@ -114,7 +112,7 @@ class Contact extends Component {
                                 </Col>
                             </Row>
                             <Row className="form-group">
-                                <Label class="label" htmlFor="phoneNum" md={2}>Phone</Label>
+                                <Label htmlFor="phoneNum" md={2}>Phone</Label>
                                 <Col md={10}>
                                     <Control.text model=".phoneNum" id="phoneNum" name="phoneNum"
                                         placeholder="Phone number"
@@ -132,16 +130,16 @@ class Contact extends Component {
                                         show="touched"
                                         component="div"
                                         messages={{
-                                           
+                                            required: 'Required',
                                             minLength: 'Must be at least 10 numbers',
                                             maxLength: 'Must be 15 numbers or less',
-                                           
+                                            isNumber: 'Must be a number'
                                         }}
                                     />
                                 </Col>
                             </Row>
                             <Row className="form-group">
-                                <Label class="label" htmlFor="email" md={2}>Email</Label>
+                                <Label htmlFor="email" md={2}>Email</Label>
                                 <Col md={10}>
                                     <Control.text model=".email" id="email" name="email"
                                         placeholder="Email"
@@ -157,15 +155,15 @@ class Contact extends Component {
                                         show="touched"
                                         component="div"
                                         messages={{
-                                            
+                                            required: 'Required',
                                             validEmail: 'Invalid email address'
                                         }}
                                     />
                                 </Col>
                             </Row>
-                          
+                           
                             <Row className="form-group">
-                                <Label class="label" htmlFor="feedback" md={2}>Your Feedback</Label>
+                                <Label htmlFor="feedback" md={2}>Your Feedback</Label>
                                 <Col md={10}>
                                     <Control.textarea model=".feedback" id="feedback" name="feedback"
                                         rows="4"
@@ -175,19 +173,18 @@ class Contact extends Component {
                             </Row>
                             <Row className="form-group">
                                 <Col md={{size: 10, offset: 2}}>
-                                    <Button type="submit">
+                                    <Button type="submit" color="secondary">
                                         Send Feedback
                                     </Button>
                                 </Col>
                             </Row>
-                        </LocalForm>
+                        </Form>
+                        </Fade>
                     </div>
                 </div>
-                </Fade>
-            </div>
+               
             
-        );
-    }
+    );
+  }
 }
-
 export default Contact;

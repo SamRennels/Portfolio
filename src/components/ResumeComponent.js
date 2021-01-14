@@ -23,11 +23,11 @@ export default function Resume() {
 			</div>
 			<Fade in>
    <div class="container">
-<div class="row mt-3">
+<div class="row mt-1">
    <div class="col-sm-6 text-center mb-4">
 	  
     <div class="card abtme">
-    <h5 class="card-header"><img class="profile-image" src="../assets/images/Sam.jpg" alt="profile pic"/></h5>
+    <h5 class="card-header"><img class="profile-image" src={process.env.PUBLIC_URL + '/assets/images/Sam.jpg'} alt="profile pic"/></h5>
       <div class="card-body">
        <div class="card-text profile-info">
 				<bold><h4>Sam Rennels</h4></bold>
@@ -63,17 +63,17 @@ export default function Resume() {
 				<div class="info">
 					<p class="sub-heading">Full Time Student & Job Applicant</p>
 					<p class="duration">JAN 2021 - PRESENT</p>
-					<p>I've fully immersed myself in last two months of my Web Developement bootcamp in order to prepare for a new 
-						career in Software Developement.
+					<p>I've fully immersed myself in last two months of my Web Development bootcamp in order to prepare for a new 
+						career in Software Development.
 					</p>
 				</div>
 				<div class="info">
 					<p class="sub-heading">Skilled Carpenter @Country Construction</p>
-					<p class="duration">Feb 2020 - PRESENT</p>
+					<p class="duration">FEB 2020 - PRESENT</p>
 					<p>Specialized in building custom decks, pergolas, & fences. We also installed custom doors and windows.
 						<br/>
 						<br/>
-						- Required
+						* Required
 						a vast knowledge of construction concepts and engineering. </p>
 				</div>
 				<div class="info">

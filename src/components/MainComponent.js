@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import Projects from './ProjectComponent';
 import ProjectInfo from './ProjectInfoComponent';
 import Header from './NavComponent';
-import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
 import Resume from './ResumeComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { postFeedback } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
         projects: state.projects,
         comments: state.comments,
     };
+};
+
+const mapDispatchToProps = {
+    postFeedback: (feedback) => postFeedback(feedback),
+    resetFeedbackForm: () => (actions.reset('feedbackForm')),
 };
 
 class Main extends Component {
@@ -39,7 +45,9 @@ class Main extends Component {
                     <Route path='/home' component={Home} />
                     <Route exact path='/projects' render={() => <Projects projects={this.props.projects} />} />
                     <Route path='/project/:projectId' component={ProjectId} />
-                    <Route exact path='/contactus' component={Contact} />
+                    <Route exact path='/contactus' render={() =>
+                    <Contact postFeedback={this.props.postFeedback} 
+                    resetFeedbackForm={this.props.resetFeedbackForm} /> } /> 
                     <Route exact path='/resume' component = {Resume} />
                     <Redirect to='/home' />
                     </Switch>
@@ -52,5 +60,4 @@ class Main extends Component {
 }
     
 
-export default withRouter(connect(mapStateToProps)(Main));
- 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

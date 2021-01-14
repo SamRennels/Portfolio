@@ -4,7 +4,7 @@ export const PROJECTS = [
     {
         id: 0,
         name: 'Country Construction',
-        image:"/assets/images/construction.png",
+       // image: {process.env.PUBLIC_URL + '/assets/images/Sam.jpg'},
         featured: false,
         description:"Bootstrap/HTML5/CSS3",
         link: <a class="anchor" target="_blanck" href="https://samrennels.github.io/Construction/">Country Construction</a>,
