@@ -51,9 +51,9 @@ class Contact extends Component  {
                 <div className="col">
                 <Breadcrumb>
                         <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>Contact Us</BreadcrumbItem>
+                        <BreadcrumbItem active>Contact</BreadcrumbItem>
                     </Breadcrumb>
-                    <h2>Contact Us</h2>
+                    <h2>Contact</h2>
                     <hr />
                 </div>
             </div>
